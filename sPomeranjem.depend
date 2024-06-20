@@ -898,3 +898,9 @@
 1526093416 c:\program files\codeblocks\mingw\x86_64-w64-mingw32\include\math.h
 	<crtdefs.h>
 
+1718876357 source:c:\users\cyber basila\desktop\opengl_project\main.cpp
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+	<string.h>
+

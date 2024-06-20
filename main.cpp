@@ -21,6 +21,165 @@ void output(float x, float y, char *s)
 	}
 }
 
+void createBase(double inclination) {
+    // right edge
+    glColor3d(255.0 / 255, 0, 0);
+    glPushMatrix();
+    glTranslated(0, 0, 0);
+    glRotatef(inclination, 0, 0, 1);
+    glScaled(1, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // right base edge
+    glPushMatrix();
+    glTranslated(-0.707 + 0.246, -0.351, 0);
+    glScaled(0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // right top edge
+    glPushMatrix();
+    glTranslated(0.46, 0.35, 0);
+    glScaled(-0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // slide part
+    glColor3d(5.0 / 255, 47.0 / 255, 51.0 / 255);
+    glPushMatrix();
+    glTranslated(0, 0, -0.1);
+    glRotatef(inclination, 0, 0, 1);
+    glScaled(1, 0.001, -0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // slide base part
+    glPushMatrix();
+    glTranslated(-0.707 + 0.246, -0.351, -0.1);
+    glScaled(0.23, 0.001, -0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // slide top part
+    glPushMatrix();
+    glTranslated(0.46, 0.35, -0.1);
+    glScaled(0.23, 0.001, -0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // left edge
+    glPushMatrix();
+    glTranslated(0, 0, -0.2);
+    glRotatef(inclination, 0, 0, 1);
+    glScaled(1, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // left base edge
+    glPushMatrix();
+    glTranslated(-0.707 + 0.246, -0.351, -0.2);
+    glScaled(0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // left top edge
+    glPushMatrix();
+    glTranslated(0.46, 0.35, -0.2);
+    glScaled(-0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+}
+
+void createStairs() {
+    // right stairs edge
+    glColor3d(255.0 / 255, 0, 0);
+    glPushMatrix();
+    glTranslated(0.56, -0.01, 0);
+    glScaled(0.03, 0.71, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // left stairs edge
+    glPushMatrix();
+    glTranslated(0.56, -0.01, -0.2);
+    glScaled(0.03, 0.71, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+}
+
+void createBars() {
+    // bar 1
+    glColor3d(5.0 / 255.0, 47.0 / 255, 51.0 / 255);
+    glPushMatrix();
+    glTranslated(0.56, 0.18, -0.1);
+    glScaled(0.03, 0.03, 0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // bar 2
+    glPushMatrix();
+    glTranslated(0.56, 0.03, -0.1);
+    glScaled(0.03, 0.03, 0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // bar 3
+    glPushMatrix();
+    glTranslated(0.56, -0.12, -0.1);
+    glScaled(0.03, 0.03, 0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    // bar 4
+    glPushMatrix();
+    glTranslated(0.56, -0.27, -0.1);
+    glScaled(0.03, 0.03, 0.2);
+    glutSolidCube(1);
+    glPopMatrix();
+}
+
+void createFrame() {
+    // frame right side
+    glColor3d(58 / 255.0, 110 / 255.0, 193 / 255.0);
+    for (double i = 0.36; i <= 0.56; i += 0.05) {
+        glPushMatrix();
+        glTranslated(i, 0.464, 0);
+        glScaled(-0.015, 0.2, 0.01);
+        glutSolidCube(1);
+        glPopMatrix();
+    }
+
+    // frame left side
+    for (double i = 0.36; i <= 0.56; i += 0.05) {
+        glPushMatrix();
+        glTranslated(i, 0.464, -0.2);
+        glScaled(-0.015, 0.2, 0.01);
+        glutSolidCube(1);
+        glPopMatrix();
+    }
+
+    // frame top
+    glPushMatrix();
+    glTranslated(0.46, 0.55, 0);
+    glScaled(-0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslated(0.46, 0.55, -0.2);
+    glScaled(-0.23, 0.03, 0.01);
+    glutSolidCube(1);
+    glPopMatrix();
+}
+
+void drawSlide(double inclination) {
+    createBase(inclination);
+    createStairs();
+    createBars();
+    createFrame();
+}
+
 
 void tfs(int v)
 {
@@ -1419,7 +1578,7 @@ void outercover()
 
     glPushMatrix();
     //ljuljaska
-    glTranslatef(-0.7, 0,-3.0);
+    /*glTranslatef(-0.7, 0,-3.0);
     glRotatef(75, 0, 1, 0);
     //desne ukrstene
     glPushMatrix();
@@ -1473,6 +1632,13 @@ void outercover()
     glScalef(0.6, 0.2 ,1.2 );
     glutSolidCube(0.4);
     glPopMatrix();
+    glPopMatrix();*/
+
+    glTranslatef(0.7, 0,-3.0);
+    glRotatef(115,0,1,0);
+    glScalef(1.5, 1.5, 1.5);
+    drawSlide(45);
+
     glPopMatrix();
 
 
